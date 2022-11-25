@@ -3,12 +3,9 @@ import json
 from django import shortcuts
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
-from django.utils.http import is_safe_url
-from django.utils.translation import ugettext_lazy as _
 from django.views.generic import FormView, View
 from extra_views import ModelFormSetView
 
@@ -17,6 +14,9 @@ from oscar.core import ajax
 from oscar.core.compat import user_is_authenticated
 from oscar.core.loading import get_class, get_classes, get_model
 from oscar.core.utils import redirect_to_referrer, safe_referrer
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
+from django.utils.http import url_has_allowed_host_and_scheme
 
 Applicator = get_class('offer.applicator', 'Applicator')
 (BasketLineForm, AddToBasketForm, BasketVoucherForm, SavedLineForm) = get_classes(
@@ -294,7 +294,7 @@ class BasketAddView(FormView):
 
     def get_success_url(self):
         post_url = self.request.POST.get('next')
-        if post_url and is_safe_url(post_url, self.request.get_host()):
+        if post_url and url_has_allowed_host_and_scheme(post_url, self.request.get_host()):
             return post_url
         return safe_referrer(self.request, 'basket:summary')
 

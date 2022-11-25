@@ -1,10 +1,10 @@
 from django import shortcuts
 from django.contrib import messages
-from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
 from django.views import generic
 
 from oscar.core.loading import get_classes, get_model
+from django.urls import reverse
 
 WeightBandForm, WeightBasedForm = get_classes(
     'dashboard.shipping.forms', ['WeightBandForm', 'WeightBasedForm'])

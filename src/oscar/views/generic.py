@@ -10,11 +10,11 @@ from django.shortcuts import redirect
 from django.utils import six
 from django.utils.encoding import smart_str
 from django.utils.six.moves import map
-from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import View
 from phonenumber_field.phonenumber import PhoneNumber
 
 from oscar.core.utils import safe_referrer
+from django.utils.translation import gettext_lazy as _
 
 
 class PostActionMixin(object):

@@ -7,14 +7,11 @@ from decimal import ROUND_DOWN
 
 from django.conf import settings
 from django.core import exceptions
-from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.query import Q
 from django.template.defaultfilters import date as date_filter
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.functional import cached_property
 from django.utils.timezone import get_current_timezone, now
-from django.utils.translation import ugettext_lazy as _
 
 from oscar.apps.offer import results, utils
 from oscar.apps.offer.managers import ActiveOfferManager
@@ -22,6 +19,9 @@ from oscar.core.compat import AUTH_USER_MODEL
 from oscar.core.loading import get_class, get_model
 from oscar.models import fields
 from oscar.templatetags.currency_filters import currency
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
+from six import python_2_unicode_compatible
 
 BrowsableRangeManager = get_class('offer.managers', 'BrowsableRangeManager')
 

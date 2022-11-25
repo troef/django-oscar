@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from django.core.urlresolvers import reverse_lazy
 
 from oscar.core.loading import get_model
 
 from oscar.test.factories import create_product, WishListFactory
 from oscar.test.testcases import WebTestCase
+from django.urls import reverse_lazy
 
 WishList = get_model('wishlists', 'WishList')
 

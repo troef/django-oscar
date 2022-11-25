@@ -2,15 +2,15 @@
 from django.contrib import messages
 from django.core.exceptions import (
     MultipleObjectsReturned, ObjectDoesNotExist, PermissionDenied)
-from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.translation import ugettext_lazy as _
 from django.views.generic import (
     CreateView, DeleteView, FormView, ListView, UpdateView, View)
 
 from oscar.core.loading import get_class, get_model
 from oscar.core.utils import redirect_to_referrer, safe_referrer
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 WishList = get_model('wishlists', 'WishList')
 Line = get_model('wishlists', 'Line')

@@ -1,14 +1,13 @@
 from mock import patch
 from decimal import Decimal as D
 
-from django.core.urlresolvers import reverse
-
 from oscar.test.factories import create_product, create_order
 from oscar.test.testcases import WebTestCase
 from oscar.core.compat import get_user_model
 from oscar.apps.basket.models import Basket
 from oscar.apps.partner import strategy
 from oscar.apps.order.models import Order
+from django.urls import reverse
 
 
 User = get_user_model()

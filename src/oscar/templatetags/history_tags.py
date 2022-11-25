@@ -1,12 +1,12 @@
 from django import template
-from django.core.urlresolvers import Resolver404, resolve
 from django.utils import six
 from django.utils.six.moves.urllib import parse
-from django.utils.translation import ugettext_lazy as _
 
 from oscar.apps.customer import history
 from oscar.core.compat import assignment_tag
 from oscar.core.loading import get_model
+from django.utils.translation import gettext_lazy as _
+from django.urls import Resolver404, resolve
 
 Site = get_model('sites', 'Site')
 

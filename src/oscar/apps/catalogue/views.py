@@ -4,13 +4,13 @@ from django.contrib import messages
 from django.core.paginator import InvalidPage
 from django.http import Http404, HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.http import urlquote
-from django.utils.translation import ugettext_lazy as _
 from django.views.generic import DetailView, TemplateView
 
 from oscar.apps.catalogue.signals import product_viewed
 from oscar.core.compat import user_is_authenticated
 from oscar.core.loading import get_class, get_model
+from django.utils.translation import gettext_lazy as _
+from urllib.parse import quote
 
 Product = get_model('catalogue', 'product')
 Category = get_model('catalogue', 'category')
@@ -60,7 +60,7 @@ class ProductDetailView(DetailView):
 
         if self.enforce_paths:
             expected_path = product.get_absolute_url()
-            if expected_path != urlquote(current_path):
+            if expected_path != quote(current_path):
                 return HttpResponsePermanentRedirect(expected_path)
 
     def get_context_data(self, **kwargs):
@@ -209,7 +209,7 @@ class ProductCategoryView(TemplateView):
             # Categories are fetched by primary key to allow slug changes.
             # If the slug has changed, issue a redirect.
             expected_path = category.get_absolute_url()
-            if expected_path != urlquote(current_path):
+            if expected_path != quote(current_path):
                 return HttpResponsePermanentRedirect(expected_path)
 
     def get_search_handler(self, *args, **kwargs):

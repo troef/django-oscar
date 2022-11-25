@@ -1,10 +1,8 @@
 import datetime
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponseRedirect
-from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from oscar.apps.dashboard.reviews import forms
@@ -12,6 +10,8 @@ from oscar.core.loading import get_model
 from oscar.core.utils import format_datetime
 from oscar.views import sort_queryset
 from oscar.views.generic import BulkEditMixin
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 ProductReview = get_model('reviews', 'productreview')
 

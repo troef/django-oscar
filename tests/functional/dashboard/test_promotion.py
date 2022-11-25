@@ -1,6 +1,6 @@
-from django.core.urlresolvers import reverse
 
 from oscar.test.testcases import WebTestCase
+from django.urls import reverse
 
 
 class ViewTests(WebTestCase):

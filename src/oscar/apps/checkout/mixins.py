@@ -3,11 +3,11 @@ import logging
 from django.contrib.sites.models import Site
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import NoReverseMatch, reverse
 from django.http import HttpResponseRedirect
 
 from oscar.core.compat import user_is_authenticated
 from oscar.core.loading import get_class, get_model
+from django.urls import NoReverseMatch, reverse
 
 OrderCreator = get_class('order.utils', 'OrderCreator')
 Dispatcher = get_class('customer.utils', 'Dispatcher')

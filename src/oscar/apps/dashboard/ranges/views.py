@@ -3,18 +3,17 @@ import os
 from django.conf import settings
 from django.contrib import messages
 from django.core import exceptions
-from django.core.urlresolvers import reverse
 from django.db.models import Count
 from django.http import HttpResponseRedirect
 from django.shortcuts import HttpResponse, get_object_or_404
 from django.template.loader import render_to_string
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext
 from django.views.generic import (
     CreateView, DeleteView, ListView, UpdateView, View)
 
 from oscar.core.loading import get_classes, get_model
 from oscar.views.generic import BulkEditMixin
+from django.utils.translation import gettext_lazy as _, ngettext
+from django.urls import reverse
 
 Range = get_model('offer', 'Range')
 RangeProduct = get_model('offer', 'RangeProduct')
@@ -126,7 +125,7 @@ class RangeProductListView(BulkEditMixin, ListView):
         for product in products:
             range.remove_product(product)
         num_products = len(products)
-        messages.success(request, ungettext("Removed %d product from range",
+        messages.success(request, ngettext("Removed %d product from range",
                                             "Removed %d products from range",
                                             num_products) % num_products)
         return HttpResponseRedirect(self.get_success_url(request))
@@ -152,7 +151,7 @@ class RangeProductListView(BulkEditMixin, ListView):
             range.add_product(product)
 
         num_products = len(products)
-        messages.success(request, ungettext("%d product added to range",
+        messages.success(request, ngettext("%d product added to range",
                                             "%d products added to range",
                                             num_products) % num_products)
         dupe_skus = form.get_duplicate_skus()

@@ -1,8 +1,8 @@
-from django.core.urlresolvers import reverse
 
 from oscar.test import testcases
 
 from . import CheckoutMixin
+from django.urls import reverse
 
 
 class TestCheckoutOfDigitalGoods(CheckoutMixin, testcases.WebTestCase):

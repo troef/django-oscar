@@ -4,7 +4,6 @@ import warnings
 from django_webtest import WebTest
 
 from django.contrib.auth.models import AnonymousUser
-from django.core.urlresolvers import reverse
 from django.core import mail
 from django.test import TestCase
 from oscar.utils.deprecation import RemovedInOscar20Warning
@@ -15,6 +14,7 @@ from oscar.apps.customer.forms import ProductAlertForm
 from oscar.apps.customer.models import ProductAlert
 from oscar.test.factories import (
     create_product, create_stockrecord, ProductAlertFactory, UserFactory)
+from django.urls import reverse
 
 
 class TestAUser(WebTest):

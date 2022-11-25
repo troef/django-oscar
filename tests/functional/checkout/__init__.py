@@ -1,9 +1,8 @@
 from decimal import Decimal as D
 
-from django.core.urlresolvers import reverse
-
 from oscar.core.loading import get_model, get_class
 from oscar.test import factories
+from django.urls import reverse
 
 UserAddress = get_model('address', 'UserAddress')
 Country = get_model('address', 'Country')

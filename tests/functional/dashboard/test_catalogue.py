@@ -1,4 +1,3 @@
-from django.core.urlresolvers import reverse
 from django.utils.six.moves import http_client
 
 from oscar.core.loading import get_model
@@ -6,6 +5,7 @@ from oscar.test.testcases import WebTestCase, add_permissions
 from oscar.test.factories import create_product
 from oscar.test.factories import (
     CategoryFactory, PartnerFactory, ProductFactory, ProductAttributeFactory)
+from django.urls import reverse
 
 Product = get_model('catalogue', 'Product')
 ProductClass = get_model('catalogue', 'ProductClass')

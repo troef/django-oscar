@@ -1,11 +1,11 @@
-from django.core.urlresolvers import reverse
 from django.core import mail
-from django.utils.translation import ugettext_lazy as _
 from webtest import AppError
 
 from oscar.core.compat import get_user_model
 from oscar.test.factories import UserFactory
 from oscar.test.testcases import WebTestCase
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 User = get_user_model()
 

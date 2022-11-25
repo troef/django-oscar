@@ -1,9 +1,9 @@
 from decimal import Decimal as D
 
 from django.core.exceptions import ImproperlyConfigured
-from django.utils.translation import ugettext_lazy as _
 
 from oscar.apps.shipping import methods as shipping_methods
+from django.utils.translation import gettext_lazy as _
 
 
 class Repository(object):

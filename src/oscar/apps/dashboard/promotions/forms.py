@@ -1,10 +1,10 @@
 from django import forms
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
 
 from oscar.apps.promotions.conf import PROMOTION_CLASSES
 from oscar.core.loading import get_class, get_classes
 from oscar.forms.fields import ExtendedURLField
+from django.utils.translation import gettext_lazy as _
 
 HandPickedProductList, RawHTML, SingleProduct, PagePromotion, OrderedProduct \
     = get_classes('promotions.models',

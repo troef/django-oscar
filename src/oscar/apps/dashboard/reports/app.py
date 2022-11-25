@@ -1,7 +1,7 @@
-from django.conf.urls import url
 
 from oscar.core.application import DashboardApplication
 from oscar.core.loading import get_class
+from django.urls import path
 
 
 class ReportsApplication(DashboardApplication):
@@ -12,7 +12,7 @@ class ReportsApplication(DashboardApplication):
 
     def get_urls(self):
         urls = [
-            url(r'^$', self.index_view.as_view(), name='reports-index'),
+            path('', self.index_view.as_view(), name='reports-index'),
         ]
         return self.post_process_urls(urls)
 

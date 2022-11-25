@@ -253,7 +253,7 @@ autoclass_content = 'class'
 
 import inspect
 from django.utils.html import strip_tags
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 
 def process_docstring(app, what, name, obj, options, lines):
@@ -272,11 +272,11 @@ def process_docstring(app, what, name, obj, options, lines):
 
         for field in fields:
             # Decode and strip any html out of the field's help text
-            help_text = strip_tags(force_text(field.help_text))
+            help_text = strip_tags(force_str(field.help_text))
 
             # Decode and capitalize the verbose name, for use if there isn't
             # any help text
-            verbose_name = force_text(field.verbose_name).capitalize()
+            verbose_name = force_str(field.verbose_name).capitalize()
 
             if help_text:
                 # Add the model field to the end of the docstring as a param

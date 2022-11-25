@@ -6,11 +6,9 @@ from decimal import InvalidOperation
 from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import reverse
 from django.db.models import Count, Q, Sum, fields
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.translation import ugettext_lazy as _
 from django.views.generic import DetailView, FormView, ListView, UpdateView
 
 from oscar.apps.order import exceptions as order_exceptions
@@ -20,6 +18,8 @@ from oscar.core.loading import get_class, get_model
 from oscar.core.utils import datetime_combine, format_datetime
 from oscar.views import sort_queryset
 from oscar.views.generic import BulkEditMixin
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 Partner = get_model('partner', 'Partner')
 Transaction = get_model('payment', 'Transaction')

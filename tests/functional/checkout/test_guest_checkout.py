@@ -2,9 +2,7 @@ import sys
 from importlib import import_module
 
 from django.test.utils import override_settings
-from django.core.urlresolvers import clear_url_caches, reverse
 from django.conf import settings
-from django.utils.http import urlquote
 from django.utils.six.moves import http_client
 import mock
 
@@ -14,6 +12,8 @@ from oscar.apps.shipping import methods
 from oscar.test.testcases import WebTestCase
 from oscar.test import factories
 from . import CheckoutMixin
+from django.urls import clear_url_caches, reverse
+from urllib.parse import quote
 
 GatewayForm = get_class('checkout.forms', 'GatewayForm')
 CheckoutSessionData = get_class('checkout.utils', 'CheckoutSessionData')
@@ -76,7 +76,7 @@ class TestIndexView(CheckoutMixin, WebTestCase):
         expected_url = '{register_url}?next={forward}&email={email}'.format(
             register_url=reverse('customer:register'),
             forward='/checkout/shipping-address/',
-            email=urlquote(new_user_email))
+            email=quote(new_user_email))
         self.assertRedirects(response, expected_url)
 
     def test_redirects_existing_customers_to_shipping_address_page(self):

@@ -6,9 +6,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import reverse, reverse_lazy
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from oscar.apps.customer.utils import get_password_reset_url
@@ -19,6 +17,8 @@ from oscar.core.utils import safe_referrer
 from oscar.views.generic import PostActionMixin
 
 from . import signals
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse, reverse_lazy
 
 PageTitleMixin, RegisterUserMixin = get_classes(
     'customer.mixins', ['PageTitleMixin', 'RegisterUserMixin'])

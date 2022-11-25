@@ -1,12 +1,12 @@
 import re
 
 from django.core import mail
-from django.core.urlresolvers import reverse
 from django_webtest import WebTest
 
 from oscar.test.testcases import WebTestCase
 from oscar.test import factories
 from oscar.core.compat import get_user_model
+from django.urls import reverse
 
 
 User = get_user_model()

@@ -7,9 +7,7 @@ from django.contrib.auth import forms as auth_forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import ValidationError
-from django.utils.http import is_safe_url
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import pgettext_lazy
+from django.utils.translation import gettext_lazy as _, pgettext_lazy
 
 from oscar.apps.customer.utils import get_password_reset_url, normalise_email
 from oscar.core.compat import (
@@ -17,6 +15,7 @@ from oscar.core.compat import (
 from oscar.core.loading import get_class, get_model, get_profile_class
 from oscar.core.validators import validate_password
 from oscar.forms import widgets
+from django.utils.http import url_has_allowed_host_and_scheme
 
 Dispatcher = get_class('customer.utils', 'Dispatcher')
 CommunicationEventType = get_model('customer', 'communicationeventtype')
@@ -112,7 +111,7 @@ class EmailAuthenticationForm(AuthenticationForm):
 
     def clean_redirect_url(self):
         url = self.cleaned_data['redirect_url'].strip()
-        if url and is_safe_url(url, self.host):
+        if url and url_has_allowed_host_and_scheme(url, self.host):
             return url
 
 
@@ -174,7 +173,7 @@ class EmailUserCreationForm(forms.ModelForm):
 
     def clean_redirect_url(self):
         url = self.cleaned_data['redirect_url'].strip()
-        if url and is_safe_url(url, self.host):
+        if url and url_has_allowed_host_and_scheme(url, self.host):
             return url
         return settings.LOGIN_REDIRECT_URL
 

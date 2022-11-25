@@ -3,7 +3,6 @@ from decimal import Decimal as D
 
 from django.test import TestCase
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
 import mock
 
 from oscar.apps.order.exceptions import (
@@ -18,6 +17,7 @@ from oscar.test.factories import (
     create_order, create_offer, create_voucher, create_basket,
     OrderFactory, OrderLineFactory, ShippingAddressFactory,
     ShippingEventFactory)
+from django.utils.translation import gettext_lazy as _
 
 ORDER_PLACED = 'order_placed'
 

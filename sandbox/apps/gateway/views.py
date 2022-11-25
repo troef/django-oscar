@@ -5,11 +5,11 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.mail import send_mail
 from django import http
-from django.core.urlresolvers import reverse
 from django.template.loader import get_template
 
 from apps.gateway import forms
 from oscar.apps.customer.forms import generate_username
+from django.urls import reverse
 
 logger = logging.getLogger('gateway')
 

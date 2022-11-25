@@ -1,7 +1,7 @@
-from django.conf.urls import url
 
 from apps.gateway import views
+from django.urls import path
 
 urlpatterns = [
-    url(r'^$', views.GatewayView.as_view(), name='gateway')
+    path('', views.GatewayView.as_view(), name='gateway')
 ]

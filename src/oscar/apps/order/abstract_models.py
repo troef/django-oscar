@@ -6,10 +6,8 @@ from django.conf import settings
 from django.db import models
 from django.db.models import Sum
 from django.utils import timezone
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.timezone import now
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import pgettext_lazy
+from django.utils.translation import gettext_lazy as _, pgettext_lazy
 
 from oscar.core.compat import AUTH_USER_MODEL
 from oscar.core.loading import get_class, get_model
@@ -17,6 +15,7 @@ from oscar.core.utils import get_default_currency
 from oscar.models.fields import AutoSlugField
 
 from . import exceptions
+from six import python_2_unicode_compatible
 
 order_status_changed = get_class('order.signals', 'order_status_changed')
 order_line_status_changed = get_class('order.signals', 'order_line_status_changed')

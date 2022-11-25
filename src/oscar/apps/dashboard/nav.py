@@ -1,11 +1,11 @@
 import re
 
 from django.core.exceptions import ImproperlyConfigured
-from django.core.urlresolvers import NoReverseMatch, resolve, reverse
 from django.http import Http404
 
 from oscar.core.loading import AppNotFoundError, get_class
 from oscar.views.decorators import check_permissions
+from django.urls import NoReverseMatch, resolve, reverse
 
 
 class Node(object):

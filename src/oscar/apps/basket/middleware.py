@@ -2,10 +2,10 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.signing import BadSignature, Signer
 from django.utils.functional import SimpleLazyObject, empty
-from django.utils.translation import ugettext_lazy as _
 
 from oscar.core.compat import MiddlewareMixin, user_is_authenticated
 from oscar.core.loading import get_class, get_model
+from django.utils.translation import gettext_lazy as _
 
 Applicator = get_class('offer.applicator', 'Applicator')
 Basket = get_model('basket', 'basket')

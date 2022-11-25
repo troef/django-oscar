@@ -1,10 +1,10 @@
-from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.forms import AuthenticationForm
 
 from oscar.core.application import (
     DashboardApplication as BaseDashboardApplication)
 from oscar.core.loading import get_class
+from django.urls import path
 
 
 class DashboardApplication(BaseDashboardApplication):
@@ -30,26 +30,26 @@ class DashboardApplication(BaseDashboardApplication):
 
     def get_urls(self):
         urls = [
-            url(r'^$', self.index_view.as_view(), name='index'),
-            url(r'^catalogue/', self.catalogue_app.urls),
-            url(r'^reports/', self.reports_app.urls),
-            url(r'^orders/', self.orders_app.urls),
-            url(r'^users/', self.users_app.urls),
-            url(r'^content-blocks/', self.promotions_app.urls),
-            url(r'^pages/', self.pages_app.urls),
-            url(r'^partners/', self.partners_app.urls),
-            url(r'^offers/', self.offers_app.urls),
-            url(r'^ranges/', self.ranges_app.urls),
-            url(r'^reviews/', self.reviews_app.urls),
-            url(r'^vouchers/', self.vouchers_app.urls),
-            url(r'^comms/', self.comms_app.urls),
-            url(r'^shipping/', self.shipping_app.urls),
+            path('', self.index_view.as_view(), name='index'),
+            path('catalogue/', self.catalogue_app.urls),
+            path('reports/', self.reports_app.urls),
+            path('orders/', self.orders_app.urls),
+            path('users/', self.users_app.urls),
+            path('content-blocks/', self.promotions_app.urls),
+            path('pages/', self.pages_app.urls),
+            path('partners/', self.partners_app.urls),
+            path('offers/', self.offers_app.urls),
+            path('ranges/', self.ranges_app.urls),
+            path('reviews/', self.reviews_app.urls),
+            path('vouchers/', self.vouchers_app.urls),
+            path('comms/', self.comms_app.urls),
+            path('shipping/', self.shipping_app.urls),
 
-            url(r'^login/$', auth_views.login, {
+            path('login/', auth_views.login, {
                 'template_name': 'dashboard/login.html',
                 'authentication_form': AuthenticationForm,
             }, name='login'),
-            url(r'^logout/$', auth_views.logout, {
+            path('logout/', auth_views.logout, {
                 'next_page': '/',
             }, name='logout'),
 

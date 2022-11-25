@@ -1,7 +1,7 @@
-from django.conf.urls import url
 
 from oscar.core.application import DashboardApplication
 from oscar.core.loading import get_class
+from django.urls import path
 
 
 class ReviewsApplication(DashboardApplication):
@@ -14,10 +14,10 @@ class ReviewsApplication(DashboardApplication):
 
     def get_urls(self):
         urls = [
-            url(r'^$', self.list_view.as_view(), name='reviews-list'),
-            url(r'^(?P<pk>\d+)/$', self.update_view.as_view(),
+            path('', self.list_view.as_view(), name='reviews-list'),
+            path('<int:pk>/', self.update_view.as_view(),
                 name='reviews-update'),
-            url(r'^(?P<pk>\d+)/delete/$', self.delete_view.as_view(),
+            path('<int:pk>/delete/', self.delete_view.as_view(),
                 name='reviews-delete'),
         ]
         return self.post_process_urls(urls)

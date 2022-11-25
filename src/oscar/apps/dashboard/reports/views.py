@@ -1,10 +1,10 @@
 from django.conf import settings
 from django.http import Http404, HttpResponseForbidden
 from django.template.response import TemplateResponse
-from django.utils.translation import ugettext_lazy as _
 from django.views.generic import ListView
 
 from oscar.core.loading import get_class
+from django.utils.translation import gettext_lazy as _
 
 ReportForm = get_class('dashboard.reports.forms', 'ReportForm')
 GeneratorRepository = get_class('dashboard.reports.utils',

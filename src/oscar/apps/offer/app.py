@@ -1,7 +1,7 @@
-from django.conf.urls import url
 
 from oscar.core.application import Application
 from oscar.core.loading import get_class
+from django.urls import path
 
 
 class OfferApplication(Application):
@@ -11,8 +11,8 @@ class OfferApplication(Application):
 
     def get_urls(self):
         urls = [
-            url(r'^$', self.list_view.as_view(), name='list'),
-            url(r'^(?P<slug>[\w-]+)/$', self.detail_view.as_view(),
+            path('', self.list_view.as_view(), name='list'),
+            path('<slug:slug>/', self.detail_view.as_view(),
                 name='detail'),
         ]
         return self.post_process_urls(urls)

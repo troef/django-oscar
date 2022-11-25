@@ -1,11 +1,11 @@
 from __future__ import unicode_literals
-from django.core.urlresolvers import reverse
 from django.utils.six.moves import http_client
 
 from oscar.core.loading import get_model, get_class
 from oscar.test import factories
 from oscar.test.testcases import WebTestCase
 from . import CheckoutMixin
+from django.urls import reverse
 
 Order = get_model('order', 'Order')
 ConditionalOffer = get_model('offer', 'ConditionalOffer')

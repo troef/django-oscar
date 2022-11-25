@@ -4,12 +4,12 @@ import datetime
 import os
 from tempfile import NamedTemporaryFile
 from django.utils import six
-from django.utils.encoding import smart_text
 from django.utils.six.moves import cStringIO
 
 from django.test import TestCase, override_settings
 
 from oscar.core.compat import UnicodeCSVWriter, existing_user_fields
+from django.utils.encoding import smart_str
 
 
 class unicodeobj(object):
@@ -55,7 +55,7 @@ class TestUnicodeCSVWriter(TestCase):
             writer.writerows([row])
 
         with open(tmp_file.name, 'r') as read_file:
-            content = smart_text(read_file.read(), encoding='utf-8').strip()
+            content = smart_str(read_file.read(), encoding='utf-8').strip()
             self.assertEqual(content, u'ünįcodē,123,foo-bar')
 
         # Clean up

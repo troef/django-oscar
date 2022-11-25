@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.http import HttpRequest
 
 from oscar.test.factories import create_product
@@ -8,6 +7,7 @@ from oscar.apps.customer import history
 from oscar.templatetags.history_tags import get_back_button
 from oscar.test.testcases import WebTestCase
 from oscar.test.utils import extract_cookie_value
+from django.urls import reverse
 
 
 User = get_user_model()

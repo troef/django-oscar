@@ -1,9 +1,9 @@
 import logging
 
 from django.core.management.base import BaseCommand
-from django.utils.translation import ugettext_lazy as _
 
 from oscar.apps.customer.alerts import utils
+from django.utils.translation import gettext_lazy as _
 
 logger = logging.getLogger(__name__)
 

@@ -1,7 +1,7 @@
-from django.conf.urls import url
 
 from oscar.core.application import DashboardApplication
 from oscar.core.loading import get_class
+from django.urls import path
 
 
 class VoucherDashboardApplication(DashboardApplication):
@@ -16,14 +16,14 @@ class VoucherDashboardApplication(DashboardApplication):
 
     def get_urls(self):
         urls = [
-            url(r'^$', self.list_view.as_view(), name='voucher-list'),
-            url(r'^create/$', self.create_view.as_view(),
+            path('', self.list_view.as_view(), name='voucher-list'),
+            path('create/', self.create_view.as_view(),
                 name='voucher-create'),
-            url(r'^update/(?P<pk>\d+)/$', self.update_view.as_view(),
+            path('update/<int:pk>/', self.update_view.as_view(),
                 name='voucher-update'),
-            url(r'^delete/(?P<pk>\d+)/$', self.delete_view.as_view(),
+            path('delete/<int:pk>/', self.delete_view.as_view(),
                 name='voucher-delete'),
-            url(r'^stats/(?P<pk>\d+)/$', self.stats_view.as_view(),
+            path('stats/<int:pk>/', self.stats_view.as_view(),
                 name='voucher-stats'),
         ]
         return self.post_process_urls(urls)

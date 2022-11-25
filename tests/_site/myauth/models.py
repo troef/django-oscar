@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import re
-
-from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.core import validators
 from django.contrib.auth.models import BaseUserManager
 
 from oscar.apps.customer.abstract_models import AbstractUser
+from django.utils.translation import gettext_lazy as _
 
 
 class CustomUserManager(BaseUserManager):

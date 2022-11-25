@@ -2,13 +2,13 @@ from django import http
 from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import get_object_or_404
-from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from oscar.apps.customer.alerts import utils
 from oscar.apps.customer.mixins import PageTitleMixin
 from oscar.core.compat import user_is_authenticated
 from oscar.core.loading import get_class, get_model
+from django.utils.translation import gettext_lazy as _
 
 Product = get_model('catalogue', 'Product')
 ProductAlert = get_model('customer', 'ProductAlert')

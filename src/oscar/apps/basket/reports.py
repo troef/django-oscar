@@ -1,6 +1,6 @@
-from django.utils.translation import ugettext_lazy as _
 
 from oscar.core.loading import get_class, get_model
+from django.utils.translation import gettext_lazy as _
 
 ReportGenerator = get_class('dashboard.reports.reports', 'ReportGenerator')
 ReportCSVFormatter = get_class('dashboard.reports.reports',

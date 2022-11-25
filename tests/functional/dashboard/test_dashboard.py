@@ -1,11 +1,10 @@
 from decimal import Decimal as D
 
-from django.core.urlresolvers import reverse
-
 from oscar.core import prices
 from oscar.apps.dashboard.views import IndexView
 from oscar.test.testcases import WebTestCase
 from oscar.test.factories import create_order
+from django.urls import reverse
 
 
 class TestDashboardIndexForAnonUser(WebTestCase):

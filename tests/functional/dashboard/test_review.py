@@ -1,12 +1,11 @@
 from datetime import timedelta
-
-from django.core.urlresolvers import reverse
 from django.utils import timezone
 
 from oscar.core.compat import get_user_model
 from oscar.core.loading import get_model
 from oscar.test.factories import ProductReviewFactory, UserFactory
 from oscar.test.testcases import WebTestCase
+from django.urls import reverse
 
 
 ProductReview = get_model('reviews', 'productreview')

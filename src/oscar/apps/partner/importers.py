@@ -2,11 +2,11 @@ import os
 from decimal import Decimal as D
 
 from django.db.transaction import atomic
-from django.utils.translation import ugettext_lazy as _
 
 from oscar.apps.catalogue.categories import create_from_breadcrumbs
 from oscar.core.compat import UnicodeCSVReader
 from oscar.core.loading import get_class, get_classes
+from django.utils.translation import gettext_lazy as _
 
 ImportingError = get_class('partner.exceptions', 'ImportingError')
 Partner, StockRecord = get_classes('partner.models', ['Partner',

@@ -9,17 +9,14 @@ from django.contrib.staticfiles.finders import find
 from django.core.cache import cache
 from django.core.exceptions import ImproperlyConfigured, ValidationError
 from django.core.files.base import File
-from django.core.urlresolvers import reverse
 from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models import Count, Sum
 from django.utils import six
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.functional import cached_property
 from django.utils.html import strip_tags
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import get_language, pgettext_lazy
+from django.utils.translation import get_language, gettext_lazy as _, pgettext_lazy
 from treebeard.mp_tree import MP_Node
 
 from oscar.core.compat import user_is_anonymous, user_is_authenticated
@@ -28,6 +25,8 @@ from oscar.core.utils import slugify
 from oscar.core.validators import non_python_keyword
 from oscar.models.fields import AutoSlugField, NullCharField
 from oscar.models.fields.slugfield import SlugField
+from django.urls import reverse
+from six import python_2_unicode_compatible
 
 ProductManager, BrowsableProductManager = get_classes(
     'catalogue.managers', ['ProductManager', 'BrowsableProductManager'])

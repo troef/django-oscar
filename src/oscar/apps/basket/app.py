@@ -1,8 +1,8 @@
-from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 
 from oscar.core.application import Application
 from oscar.core.loading import get_class
+from django.urls import path
 
 
 class BasketApplication(Application):
@@ -15,13 +15,12 @@ class BasketApplication(Application):
 
     def get_urls(self):
         urls = [
-            url(r'^$', self.summary_view.as_view(), name='summary'),
-            url(r'^add/(?P<pk>\d+)/$', self.add_view.as_view(), name='add'),
-            url(r'^vouchers/add/$', self.add_voucher_view.as_view(),
+            path('', self.summary_view.as_view(), name='summary'),
+            path('add/<int:pk>/', self.add_view.as_view(), name='add'),
+            path('vouchers/add/', self.add_voucher_view.as_view(),
                 name='vouchers-add'),
-            url(r'^vouchers/(?P<pk>\d+)/remove/$',
-                self.remove_voucher_view.as_view(), name='vouchers-remove'),
-            url(r'^saved/$', login_required(self.saved_view.as_view()),
+            path('vouchers/<int:pk>/remove/', self.remove_voucher_view.as_view(), name='vouchers-remove'),
+            path('saved/', login_required(self.saved_view.as_view()),
                 name='saved'),
         ]
         return self.post_process_urls(urls)

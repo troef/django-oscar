@@ -1,9 +1,9 @@
 from importlib import import_module
 
 from django.core import exceptions
-from django.core.urlresolvers import reverse
 
 from oscar.apps.offer.applicator import Applicator  # backwards-compat  # noqa
+from django.urls import reverse
 
 
 def range_anchor(range):

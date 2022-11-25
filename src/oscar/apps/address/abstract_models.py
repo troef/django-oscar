@@ -4,15 +4,14 @@ import zlib
 from django.conf import settings
 from django.core import exceptions
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.six.moves import filter
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import pgettext_lazy
+from django.utils.translation import gettext_lazy as _, pgettext_lazy
 from phonenumber_field.modelfields import PhoneNumberField
 
 from oscar.core.compat import AUTH_USER_MODEL
 from oscar.core.decorators import deprecated
 from oscar.models.fields import UppercaseCharField
+from six import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible

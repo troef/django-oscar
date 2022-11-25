@@ -1,5 +1,5 @@
-from django.core.urlresolvers import reverse
 from django.views.generic import RedirectView, TemplateView
+from django.urls import reverse
 
 
 class HomeView(TemplateView):

@@ -3,14 +3,14 @@ from decimal import Decimal as D
 from django import http
 from django.contrib import messages
 from django.core.exceptions import ImproperlyConfigured
-from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext_lazy as _
 
 from oscar.core import prices
 from oscar.core.compat import user_is_authenticated
 from oscar.core.loading import get_class, get_model
 
 from . import exceptions
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 Repository = get_class('shipping.repository', 'Repository')
 OrderTotalCalculator = get_class(

@@ -2,12 +2,11 @@ from decimal import Decimal as D
 from decimal import ROUND_UP
 
 from django.utils import six
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext
 
 from oscar.apps.offer import utils
 from oscar.core.loading import get_model
 from oscar.templatetags.currency_filters import currency
+from django.utils.translation import gettext_lazy as _, ngettext
 
 Condition = get_model('offer', 'Condition')
 
@@ -72,7 +71,7 @@ class CountCondition(Condition):
     def get_upsell_message(self, offer, basket):
         num_matches = self._get_num_matches(basket)
         delta = self.value - num_matches
-        return ungettext('Buy %(delta)d more product from %(range)s',
+        return ngettext('Buy %(delta)d more product from %(range)s',
                          'Buy %(delta)d more products from %(range)s', delta) \
             % {'delta': delta, 'range': self.range}
 
@@ -159,7 +158,7 @@ class CoverageCondition(Condition):
 
     def get_upsell_message(self, offer, basket):
         delta = self.value - self._get_num_covered_products(basket)
-        return ungettext('Buy %(delta)d more product from %(range)s',
+        return ngettext('Buy %(delta)d more product from %(range)s',
                          'Buy %(delta)d more products from %(range)s', delta) \
             % {'delta': delta, 'range': self.range}
 

@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.utils.six.moves import http_client
 
 from oscar.core.loading import get_model
@@ -9,6 +8,7 @@ from oscar.test.factories import PartnerFactory, ShippingAddressFactory
 from oscar.test.factories import create_order, create_basket
 from oscar.test.testcases import WebTestCase
 from oscar.test.factories import SourceTypeFactory
+from django.urls import reverse
 
 
 Basket = get_model('basket', 'Basket')

@@ -3,15 +3,15 @@ import json
 from django.contrib import messages
 from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
-from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
 from django.views.generic import DeleteView, FormView, ListView
 
 from oscar.core.loading import get_class, get_classes, get_model
 from oscar.views import sort_queryset
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 ConditionalOffer = get_model('offer', 'ConditionalOffer')
 Condition = get_model('offer', 'Condition')

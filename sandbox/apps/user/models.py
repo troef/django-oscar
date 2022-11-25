@@ -7,10 +7,10 @@ from django.contrib.auth.models import (
     AbstractUser, BaseUserManager, AbstractBaseUser)
 from django.db import models
 from django.utils import timezone
-from django.utils.encoding import python_2_unicode_compatible
 
 from oscar.core import compat
 from oscar.apps.customer import abstract_models
+from six import python_2_unicode_compatible
 
 
 class Profile(models.Model):

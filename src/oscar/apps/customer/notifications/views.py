@@ -2,14 +2,13 @@ from django.conf import settings
 from django.contrib import messages
 from django.utils.html import strip_tags
 from django.utils.timezone import now
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext
 from django.views import generic
 
 from oscar.apps.customer.mixins import PageTitleMixin
 from oscar.core.loading import get_model
 from oscar.core.utils import redirect_to_referrer
 from oscar.views.generic import BulkEditMixin
+from django.utils.translation import gettext_lazy as _, ngettext
 
 Notification = get_model('customer', 'Notification')
 
@@ -90,7 +89,7 @@ class UpdateView(BulkEditMixin, generic.RedirectView):
     def archive(self, request, notifications):
         for notification in notifications:
             notification.archive()
-        msg = ungettext(
+        msg = ngettext(
             '%(count)d notification archived',
             '%(count)d notifications archived', len(notifications)) \
             % {'count': len(notifications)}
@@ -100,7 +99,7 @@ class UpdateView(BulkEditMixin, generic.RedirectView):
     def delete(self, request, notifications):
         for notification in notifications:
             notification.delete()
-        msg = ungettext(
+        msg = ngettext(
             '%(count)d notification deleted',
             '%(count)d notifications deleted', len(notifications)) \
             % {'count': len(notifications)}

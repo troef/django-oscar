@@ -1,6 +1,4 @@
 import datetime
-
-from django.core.urlresolvers import reverse
 from oscar.test import factories
 
 from oscar.test.testcases import WebTestCase
@@ -9,6 +7,7 @@ from oscar.apps.catalogue.models import Product, ProductAttribute
 from oscar.test.factories import (
     CategoryFactory, ProductFactory, ProductAttributeFactory,
     ProductClassFactory)
+from django.urls import reverse
 
 User = get_user_model()
 

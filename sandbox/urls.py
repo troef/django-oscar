@@ -1,6 +1,6 @@
 import django
 from django.conf import settings
-from django.conf.urls import include, url
+from django.conf.urls import include
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -10,21 +10,22 @@ from oscar.views import handler403, handler404, handler500
 
 from apps.gateway import urls as gateway_urls
 from apps.sitemaps import base_sitemaps
+from django.urls import path, re_path
 
 admin.autodiscover()
 
 urlpatterns = [
     # Include admin as convenience. It's unsupported and only included
     # for developers.
-    url(r'^admin/', include(admin.site.urls)),
+    path('admin/', include(admin.site.urls)),
 
     # i18n URLS need to live outside of i18n_patterns scope of Oscar
-    url(r'^i18n/', include(django.conf.urls.i18n)),
+    path('i18n/', include(django.conf.urls.i18n)),
 
     # include a basic sitemap
-    url(r'^sitemap\.xml$', views.index,
+    re_path(r'^sitemap\.xml$', views.index,
         {'sitemaps': base_sitemaps}),
-    url(r'^sitemap-(?P<section>.+)\.xml$', views.sitemap,
+    re_path(r'^sitemap-(?P<section>.+)\.xml$', views.sitemap,
         {'sitemaps': base_sitemaps},
         name='django.contrib.sitemaps.views.sitemap')
 ]
@@ -32,9 +33,9 @@ urlpatterns = [
 # Prefix Oscar URLs with language codes
 urlpatterns += i18n_patterns(
     # Custom functionality to allow dashboard users to be created
-    url(r'gateway/', include(gateway_urls)),
+    path('gateway/', include(gateway_urls)),
     # Oscar's normal URLs
-    url(r'^', application.urls),
+    path('', application.urls),
 )
 
 if settings.DEBUG:
@@ -45,8 +46,8 @@ if settings.DEBUG:
                           document_root=settings.MEDIA_ROOT)
     # Allow error pages to be tested
     urlpatterns += [
-        url(r'^403$', handler403),
-        url(r'^404$', handler404),
-        url(r'^500$', handler500),
-        url(r'^__debug__/', include(debug_toolbar.urls)),
+        path('403', handler403),
+        path('404', handler404),
+        path('500', handler500),
+        path('__debug__/', include(debug_toolbar.urls)),
     ]

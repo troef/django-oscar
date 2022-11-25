@@ -1,9 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
-from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.shortcuts import redirect
-from django.utils.translation import ugettext_lazy as _
 from django.views.generic import (
     DeleteView, DetailView, FormView, ListView, UpdateView)
 from django.views.generic.detail import SingleObjectMixin
@@ -14,6 +12,8 @@ from oscar.apps.customer.utils import normalise_email
 from oscar.core.compat import get_user_model
 from oscar.core.loading import get_class, get_classes, get_model
 from oscar.views.generic import BulkEditMixin
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 UserSearchForm, ProductAlertSearchForm, ProductAlertUpdateForm = get_classes(
     'dashboard.users.forms', ('UserSearchForm', 'ProductAlertSearchForm',

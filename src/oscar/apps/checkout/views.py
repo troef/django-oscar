@@ -3,11 +3,8 @@ import logging
 from django import http
 from django.contrib import messages
 from django.contrib.auth import login
-from django.core.urlresolvers import reverse, reverse_lazy
 from django.shortcuts import redirect
 from django.utils import six
-from django.utils.http import urlquote
-from django.utils.translation import ugettext as _
 from django.views import generic
 
 from oscar.apps.shipping.methods import NoShippingRequired
@@ -15,6 +12,9 @@ from oscar.core.compat import user_is_authenticated
 from oscar.core.loading import get_class, get_classes, get_model
 
 from . import signals
+from django.utils.translation import gettext as _
+from django.urls import reverse, reverse_lazy
+from urllib.parse import quote
 
 ShippingAddressForm, ShippingMethodForm, GatewayForm \
     = get_classes('checkout.forms', ['ShippingAddressForm', 'ShippingMethodForm', 'GatewayForm'])
@@ -94,7 +94,7 @@ class IndexView(CheckoutSessionMixin, generic.FormView):
                 self.success_url = "%s?next=%s&email=%s" % (
                     reverse('customer:register'),
                     reverse('checkout:shipping-address'),
-                    urlquote(email)
+                    quote(email)
                 )
         else:
             user = form.get_user()

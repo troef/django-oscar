@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.models import Permission
-from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import pgettext_lazy
+from django.utils.translation import gettext_lazy as _, pgettext_lazy
 
 from oscar.apps.customer.forms import EmailUserCreationForm
 from oscar.core.compat import existing_user_fields, get_user_model

@@ -3,12 +3,12 @@ from decimal import Decimal as D
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.db import transaction
-from django.utils.translation import ugettext_lazy as _
 
 from oscar.core.compat import user_is_authenticated
 from oscar.core.loading import get_class, get_model
 
 from . import exceptions
+from django.utils.translation import gettext_lazy as _
 
 Order = get_model('order', 'Order')
 Line = get_model('order', 'Line')

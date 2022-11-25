@@ -1,7 +1,7 @@
-from django.conf.urls import url
 
 from oscar.core.application import DashboardApplication
 from oscar.core.loading import get_class
+from django.urls import path, re_path
 
 
 class CommsDashboardApplication(DashboardApplication):
@@ -13,8 +13,8 @@ class CommsDashboardApplication(DashboardApplication):
 
     def get_urls(self):
         urls = [
-            url(r'^$', self.list_view.as_view(), name='comms-list'),
-            url(r'^(?P<slug>\w+)/$', self.update_view.as_view(),
+            path('', self.list_view.as_view(), name='comms-list'),
+            re_path(r'^(?P<slug>\w+)/$', self.update_view.as_view(),
                 name='comms-update'),
         ]
         return self.post_process_urls(urls)

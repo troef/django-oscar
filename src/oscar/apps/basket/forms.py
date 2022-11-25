@@ -1,10 +1,10 @@
 from django import forms
 from django.conf import settings
 from django.db.models import Sum
-from django.utils.translation import ugettext_lazy as _
 
 from oscar.core.loading import get_model
 from oscar.forms import widgets
+from django.utils.translation import gettext_lazy as _
 
 Line = get_model('basket', 'line')
 Basket = get_model('basket', 'basket')

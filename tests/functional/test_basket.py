@@ -4,8 +4,6 @@ import datetime
 
 from django.conf import settings
 from django.test import TestCase
-from django.utils.translation import ugettext
-from django.core.urlresolvers import reverse
 
 from oscar.test.factories import create_product
 from oscar.core.compat import get_user_model
@@ -16,6 +14,8 @@ from oscar.apps.basket import reports
 from oscar.apps.basket.models import Basket
 from oscar.test.testcases import WebTestCase
 from oscar.apps.partner import strategy
+from django.urls import reverse
+from django.utils.translation import gettext
 
 
 User = get_user_model()
@@ -116,7 +116,7 @@ class BasketThresholdTest(WebTestCase):
                        'quantity': 2}
         response = self.app.post(url, params=post_params)
 
-        expected = ugettext(
+        expected = gettext(
             "Due to technical limitations we are not able to ship more "
             "than %(threshold)d items in one order. Your basket currently "
             "has %(basket)d items."

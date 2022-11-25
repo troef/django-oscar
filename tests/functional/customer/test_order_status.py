@@ -1,9 +1,8 @@
 from django.utils.six.moves import http_client
 
-from django.core.urlresolvers import reverse
-
 from oscar.test.factories import create_order
 from oscar.test.testcases import WebTestCase
+from django.urls import reverse
 
 
 class TestAnAnonymousUser(WebTestCase):

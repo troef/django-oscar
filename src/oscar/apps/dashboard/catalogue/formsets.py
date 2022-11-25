@@ -1,9 +1,9 @@
 from django import forms
 from django.core import exceptions
 from django.forms.models import inlineformset_factory
-from django.utils.translation import ugettext_lazy as _
 
 from oscar.core.loading import get_classes, get_model
+from django.utils.translation import gettext_lazy as _
 
 Product = get_model('catalogue', 'Product')
 ProductClass = get_model('catalogue', 'ProductClass')

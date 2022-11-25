@@ -1,13 +1,12 @@
 # flake8: noqa, because URL syntax is more readable with long lines
 
 from django.conf import settings
-from django.conf.urls import url
 from django.contrib.auth import views as auth_views
-from django.core.urlresolvers import reverse_lazy
 
 from oscar.core.application import Application
 from oscar.core.loading import get_class
 from oscar.views.decorators import login_forbidden
+from django.urls import path, re_path, reverse_lazy
 
 
 class Shop(Application):
@@ -27,39 +26,36 @@ class Shop(Application):
 
     def get_urls(self):
         urls = [
-            url(r'^catalogue/', self.catalogue_app.urls),
-            url(r'^basket/', self.basket_app.urls),
-            url(r'^checkout/', self.checkout_app.urls),
-            url(r'^accounts/', self.customer_app.urls),
-            url(r'^search/', self.search_app.urls),
-            url(r'^dashboard/', self.dashboard_app.urls),
-            url(r'^offers/', self.offer_app.urls),
+            path('catalogue/', self.catalogue_app.urls),
+            path('basket/', self.basket_app.urls),
+            path('checkout/', self.checkout_app.urls),
+            path('accounts/', self.customer_app.urls),
+            path('search/', self.search_app.urls),
+            path('dashboard/', self.dashboard_app.urls),
+            path('offers/', self.offer_app.urls),
 
             # Password reset - as we're using Django's default view functions,
             # we can't namespace these urls as that prevents
             # the reverse function from working.
-            url(r'^password-reset/$',
-                login_forbidden(auth_views.password_reset),
+            path('password-reset/', login_forbidden(auth_views.password_reset),
                 {'password_reset_form': self.password_reset_form,
                  'post_reset_redirect': reverse_lazy('password-reset-done')},
                 name='password-reset'),
-            url(r'^password-reset/done/$',
-                login_forbidden(auth_views.password_reset_done),
+            path('password-reset/done/', login_forbidden(auth_views.password_reset_done),
                 name='password-reset-done'),
-            url(r'^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$',
+            re_path(r'^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$',
                 login_forbidden(auth_views.password_reset_confirm),
                 {
                     'post_reset_redirect': reverse_lazy('password-reset-complete'),
                     'set_password_form': self.set_password_form,
                 },
                 name='password-reset-confirm'),
-            url(r'^password-reset/complete/$',
-                login_forbidden(auth_views.password_reset_complete),
+            path('password-reset/complete/', login_forbidden(auth_views.password_reset_complete),
                 name='password-reset-complete'),
         ]
 
         if settings.OSCAR_PROMOTIONS_ENABLED:
-            urls.append(url(r'', self.promotions_app.urls))
+            urls.append(path('', self.promotions_app.urls))
         return urls
 
 application = Shop()

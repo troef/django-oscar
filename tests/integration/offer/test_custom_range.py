@@ -1,9 +1,9 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 from oscar.test.factories import create_product
-from django.utils.translation import ugettext_lazy as _
 
 from oscar.apps.offer import custom
+from django.utils.translation import gettext_lazy as _
 
 
 class CustomRange(object):

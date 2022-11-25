@@ -1,13 +1,13 @@
 from django.conf import settings
 from django.core.cache import cache
-from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext
 from django.utils.six.moves import http_client
 
 from oscar.apps.catalogue.models import Category
 from oscar.test.testcases import WebTestCase
 
 from oscar.test.factories import create_product
+from django.urls import reverse
+from django.utils.translation import gettext
 
 
 class TestProductDetailView(WebTestCase):
@@ -47,7 +47,7 @@ class TestProductListView(WebTestCase):
         product = create_product(num_in_stock=1)
         page = self.app.get(reverse('catalogue:index'))
         self.assertContains(page, product.title)
-        self.assertContains(page, ugettext("Add to basket"))
+        self.assertContains(page, gettext("Add to basket"))
 
     def test_shows_not_available_for_out_of_stock_product(self):
         product = create_product(num_in_stock=0)
